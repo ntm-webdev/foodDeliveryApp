@@ -1,0 +1,36 @@
+.navItem {
+  display: inline-block;
+  color: white;
+  padding: 0.5rem;
+  text-align: center;
+  border-radius: 8px;
+  border: 2px solid #66b3ff;
+}
+.navItem p {
+  font-weight: bolder;
+}
+
+.navItem:nth-child(1) {
+  background-color: #ff3333;
+}
+.navItem:nth-child(2) {
+  background-color: #33ccff;
+}
+.navItem:nth-child(3) {
+  background-color: #cccc00;
+}
+.navItem:nth-child(4) {
+  background-color: #a366ff;
+}
+.navItem:nth-child(5) {
+  background-color: #009933;
+}
+.navItem:nth-child(6) {
+  background-color: #ff80d5;
+}
+
+@media (min-width: 768px) {
+  .navItem {
+    width: 20%;
+  }
+}

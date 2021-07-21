@@ -1,0 +1,11 @@
+.scrollmenu {
+  margin: 2rem auto 0;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .scrollmenu {
+    width: 320px;
+  }
+}

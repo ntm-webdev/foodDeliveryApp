@@ -1,0 +1,22 @@
+.nav {
+  bottom: 0;
+  width: 100%;
+  clear: both;
+  position: sticky;
+}
+.navItem,
+.navItemOrder {
+  padding: 1rem;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.navItem {
+  background-color: #e6e6e6;
+  cursor: pointer;
+}
+
+.navItemOrder {
+  background-color: #3366ff;
+  color: white;
+}

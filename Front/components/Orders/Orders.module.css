@@ -1,0 +1,10 @@
+.order {
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  margin-bottom: 1rem;
+}
+.orderTitle {
+  padding: 0.3rem 0.8rem;
+  text-transform: uppercase;
+}

@@ -1,9 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+/images
 
 # dependencies
-/Back/node_modules
-/Back/images
-/Front/node_modules
+/node_modules
 /.pnp
 .pnp.js
 

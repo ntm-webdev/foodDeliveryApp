@@ -1,0 +1,14 @@
+.sectionTitled {
+  background-color: #ff4d4d;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  text-transform: uppercase;
+}
+.textCentered {
+  text-align: center;
+  background-color: #f2f2f2;
+}
+.bordered {
+  border: 1px solid black;
+  padding: 0.7rem;
+}

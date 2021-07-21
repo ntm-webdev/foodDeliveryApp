@@ -1,0 +1,21 @@
+.localForm {
+  text-align: left;
+  border-left: 1px solid gray;
+}
+
+.signup {
+  padding: 1rem;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+}
+
+.facebook {
+  background-color: #007bff;
+}
+
+.google {
+  background-color: #f84d3a;
+}

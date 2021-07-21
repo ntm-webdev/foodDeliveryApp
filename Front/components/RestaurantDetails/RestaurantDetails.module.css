@@ -1,0 +1,19 @@
+.main {
+  padding: 0.8rem;
+  border-bottom: 2px solid #e6e6e6;
+}
+.selection {
+  border-bottom: 2px solid #e6e6e6;
+  text-align: center;
+}
+.optionSelected {
+  font-weight: bolder;
+}
+.feedbackSection {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 300px;
+}
+.feedback {
+  border-bottom: 2px solid #e6e6e6;
+}
