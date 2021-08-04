@@ -9,18 +9,8 @@ const OrderPage = () => {
 };
 
 export async function getServerSideProps(ctx) {
-  if (Object.keys(ctx.req.cookies).length === 0) {
-    return {
-      redirect: {
-        destination: "/sign-up",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
+  const {isAuthenticated} = require('../../utils/isAuth');
+  return (isAuthenticated(ctx)) ? isAuthenticated(ctx) : { props: {}};
 }
 
 export default OrderPage;

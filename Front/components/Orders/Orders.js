@@ -36,7 +36,7 @@ const Orders = () => {
             <div className="row" key={key}>
               <div className="col-sm-2 padding">
                 <Image
-                  src={`${process.env.REACT_APP_API_URL}/images/${item[1][0].logo}`}
+                  src={`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/images/${item[1][0].logo}`}
                   width={100}
                   height={100}
                 />
@@ -51,7 +51,7 @@ const Orders = () => {
                       ({i.itemQty}x) 
                     </strong>
                     <span>
-                      {" " + i.itemName}, the unit price is <strong>{i.itemUnityPrice}</strong>
+                      {" " + i.itemName}, the unit price is <strong>R${i.itemUnityPrice}</strong>
                     </span>
                   </p>
                 ))}

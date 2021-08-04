@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useRouter } from "next/router";
 
 import styles from "./Auth.module.css";
 import Form from "../UI/Form/Form";
@@ -30,7 +29,6 @@ const fieldsSignIn = [
 ];
 
 const Auth = () => {
-  const router = useRouter();
   const [showModal, setShowModal] = useState(false);
 
   const showModalHandler = () => {
@@ -43,14 +41,14 @@ const Auth = () => {
 
   const finalFunctionHandler = () => {
     onModalCloseHandler();
-    router.replace("/");
+    window.location.href = process.env.NEXT_PUBLIC_REACT_APP_URL;
   };
 
   const socialMediaHandler = (socialMedia) => {
     if (socialMedia === "google") {
-      window.open(`${process.env.REACT_APP_API_URL}/auth/google`, "_self");
+      window.open(`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/auth/google`, "_self");
     } else {
-      window.open(`${process.env.REACT_APP_API_URL}/auth/facebook`, "_self");
+      window.open(`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/auth/facebook`, "_self");
     }
   };
 

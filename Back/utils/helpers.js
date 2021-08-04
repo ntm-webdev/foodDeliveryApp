@@ -8,3 +8,7 @@ module.exports.calculateFeedback = (existingRestaurant) => {
     return -1;
   }
 };
+
+module.exports.getFileField = (fileFieldMessage) => {
+  return fileFieldMessage.substr(20);
+};

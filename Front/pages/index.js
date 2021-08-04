@@ -14,20 +14,13 @@ const Home = ({ items }) => {
 };
 
 export async function getServerSideProps(ctx) {
-  if (Object.keys(ctx.req.cookies).length === 0) {
-    return {
-      redirect: {
-        destination: '/sign-up',
-        permanent: false,
-      }
-    }
-  }
+  const {isAuthenticated} = require('../utils/isAuth');
+  if (isAuthenticated(ctx)) return isAuthenticated(ctx);
 
   const queryParam = ctx.resolvedUrl !== "/" ? ctx.resolvedUrl : "";
-  const response = await fetch(
-    `${process.env.REACT_APP_API_URL}/restaurants${queryParam}`,
-    { method: "GET" }
-  );
+  const response = await fetch(`${process.env.REACT_APP_API_URL}/restaurants${queryParam}`, { 
+    method: "GET",
+  });
   const items = await response.json();
 
   return {

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import styles from "./Restaurant.module.css";
-import { getRating } from "../../utils/general";
+import { getRating } from "../../utils/starComponent";
 
 const Restaurant = ({ items }) => {
   if (items.length < 1) {
@@ -28,7 +28,7 @@ const Restaurant = ({ items }) => {
               <div className={`clickable ${styles.restaurant}`}>
                 <div className={styles.restaurantImage}>
                   <Image
-                    src={`${process.env.REACT_APP_API_URL}/images/${item.logo}`}
+                    src={`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/images/${item.logo}`}
                     width={100}
                     height={100}
                   />

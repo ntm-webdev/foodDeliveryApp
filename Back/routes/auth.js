@@ -11,20 +11,12 @@ const {
 } = require("../middlewares/fileUpload");
 
 route.get("/facebook", passport.authenticate("facebook"));
-route.get(
-  "/facebook/callback",
-  passport.authenticate("facebook"),
-  authController.redirectHome
-);
+route.get("/facebook/callback", passport.authenticate("facebook"), authController.redirectHome);
 
 route.get("/google", passport.authenticate("google", { scope: ["profile"] }));
-route.get(
-  "/google/callback",
-  passport.authenticate("google"),
-  authController.redirectHome
-);
+route.get("/google/callback", passport.authenticate("google"), authController.redirectHome);
 
-route.post("/login", multer({ storage }).fields([]), (req, res) => {
+route.post("/login", multer({ storage }).fields([]), (req, res, next) => {
   passport.authenticate("local", function (err, user, info) {
     if (err) {
       return res
@@ -42,7 +34,7 @@ route.post("/login", multer({ storage }).fields([]), (req, res) => {
           .status(500)
           .json({ msg: "Something went wrong, please try again later." });
       } else {
-        res.end();
+        res.send(null);
       }
     });
   })(req, res);

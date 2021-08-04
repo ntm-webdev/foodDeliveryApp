@@ -1,4 +1,5 @@
 import { useState, useEffect, createContext } from "react";
+import { useRouter } from "next/router";
 
 import axiosInstance from "../utils/axios";
 
@@ -11,6 +12,7 @@ export const AuthContext = createContext({
 
 const AuthProvider = ({ children }) => {
   const [userData, setUserData] = useState();
+  const router = useRouter();
 
   useEffect(() => {
     loginHandler();
@@ -18,7 +20,11 @@ const AuthProvider = ({ children }) => {
 
   const loginHandler = async () => {
     const res = await axiosInstance.get("/auth/get-credential");
-    setUserData(res.data);
+    if (res.data) {
+      setUserData(res.data);
+    } else {
+      router.push('/sign-up');
+    }
   };
 
   const logoutHandler = async () => {

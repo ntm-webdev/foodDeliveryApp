@@ -1,7 +1,13 @@
 import { useFormik } from "formik";
+import * as Yup from 'yup';
 
 import useHttp from "../../../hooks/use-http";
 import Spinner from "../Spinner/Spinner";
+const SUPPORTED_FORMATS = [
+  "image/jpg",
+  "image/jpeg",
+  "image/png"
+];
 
 const Form = ({ initialValues, fields, url, finalFunction = null, submitButtonText, extraData = null }) => {
   const { sendRequest, message, spinner, errors } = useHttp();
@@ -14,6 +20,13 @@ const Form = ({ initialValues, fields, url, finalFunction = null, submitButtonTe
       keys.forEach((key) => {
         if (!values[key] && key !== "feedbackId") {
           errors[key] = "Required";
+        } else {
+          if (key == "image" || key == "logo") {
+            if (values[key] && values[key].type !== 'image/jpeg' && values[key].type !== "image/png" && values[key].type !== "image/jpg") {
+              formik.touched[key] = true;
+              errors[key] = "Invalid image";
+            }
+          }
         }
       });
       return errors;
@@ -113,9 +126,7 @@ const Form = ({ initialValues, fields, url, finalFunction = null, submitButtonTe
             className="form-control-file"
             id={el.label}
             name={el.label}
-            onChange={(event) =>
-              formik.setFieldValue(el.label, event.target.files[0])
-            }
+            onChange={(event) => formik.setFieldValue(el.label, event.target.files[0])}
           />
         );
         break;
@@ -177,7 +188,7 @@ const Form = ({ initialValues, fields, url, finalFunction = null, submitButtonTe
             </label>
           )}
           {getInputForm(el)}
-          {formik.errors[el.label] && (
+          {formik.errors[el.label] && formik.touched[el.label] && (
             <div className="validation-error">{formik.errors[el.label]}</div>
           )}
           {errors.length > 0 && errors[i].msg != null && (

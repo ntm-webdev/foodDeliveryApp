@@ -5,13 +5,14 @@ const SignUp = () => {
 };
 
 export async function getServerSideProps(ctx) {
-  if (Object.keys(ctx.req.cookies).length > 0) {
+  const isAuthenticated = Object.keys(ctx.req.cookies).find(cookie => cookie === "connect.sid");
+  if (isAuthenticated) {
     return {
       redirect: {
-        destination: '/',
+        destination: "/",
         permanent: false,
       }
-    }
+    };
   }
 
   return {

@@ -34,7 +34,7 @@ const AddRestaurant = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container breath">
       <Form
         initialValues={initialValues}
         fields={fields}
@@ -46,14 +46,8 @@ const AddRestaurant = () => {
 };
 
 export async function getServerSideProps(ctx) {
-  if (Object.keys(ctx.req.cookies).length === 0) {
-    return {
-      redirect: {
-        destination: "/sign-up",
-        permanent: false,
-      },
-    };
-  }
+  const {isAuthenticated} = require('../../utils/isAuth');
+  if (isAuthenticated(ctx)) return isAuthenticated(ctx);
 
   return {
     props: {},

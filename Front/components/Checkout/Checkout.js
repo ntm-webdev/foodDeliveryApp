@@ -84,7 +84,7 @@ const Checkout = () => {
                   <Fragment key={k}>
                     <div className="col-sm-3">
                       <Image
-                        src={`${process.env.REACT_APP_API_URL}/images/${i.itemImage}`}
+                        src={`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/images/${i.itemImage}`}
                         width={100}
                         height={100}
                       />

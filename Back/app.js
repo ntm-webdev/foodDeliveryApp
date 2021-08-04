@@ -9,9 +9,9 @@ const session = require("express-session");
 const passport = require("passport");
 const MongoDBStore = require("connect-mongodb-session")(session);
 
-const admRoute = require("./routes/adm");
-const userRoute = require("./routes/user");
-const authRoute = require("./routes/auth");
+require('./passport/local');
+require('./passport/google');
+require('./passport/facebook');
 
 const store = new MongoDBStore({
   uri: process.env.DB_URL,
@@ -19,8 +19,7 @@ const store = new MongoDBStore({
 });
 
 const app = express();
-
-app.use(cors({ origin: process.env.FRONTEND_APP_URL, credentials: true }));
+app.use(cors({ credentials: true, origin: process.env.FRONTEND_APP_URL }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -35,14 +34,11 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-require('./passport/local');
-require('./passport/google');
-require('./passport/facebook');
 
 app.use("/api/images", express.static(path.join(__dirname, "/images")));
-app.use("/api/adm", admRoute);
-app.use("/api/auth", authRoute);
-app.use("/api", userRoute);
+app.use("/api", require("./routes/user"));
+app.use("/api/adm", require("./routes/adm"));
+app.use("/api/auth", require("./routes/auth"));
 
 mongoose
   .connect(process.env.DB_URL, {

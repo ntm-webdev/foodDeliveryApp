@@ -2,7 +2,7 @@ const { validationResult } = require("express-validator");
 
 const Restaurant = require("../models/restaurant");
 const User = require("../models/user");
-const { calculateFeedback } = require("../utils/helpers");
+const { calculateFeedback, getFileField } = require("../utils/helpers");
 
 module.exports.postRestaurant = async (req, res) => {
   const errors = validationResult(req);
@@ -15,8 +15,12 @@ module.exports.postRestaurant = async (req, res) => {
   }
 
   if (req.fileValidationError) {
-    errorsArray[2] = { msg: "Invalid image." };
-    errorsArray[3] = { msg: "Invalid image." };
+    const field = getFileField(req.fileValidationError);
+    if (field === "image") {
+      errorsArray[2] = { msg: "Invalid image." };
+    } else {
+      errorsArray[3] = { msg: "Invalid image." };
+    }
     return res.status(422).json({ errors: errorsArray });
   }
 

@@ -1,3 +1,4 @@
+const ObjectId = require('mongoose').Types.ObjectId;
 const Restaurant = require("../models/restaurant");
 
 module.exports.getRestaurants = async (req, res) => {
@@ -18,6 +19,10 @@ module.exports.getRestaurants = async (req, res) => {
 };
 
 module.exports.getRestaurant = async (req, res) => {
+  if (!ObjectId.isValid(req.query.id)) {
+    return res.status(200).json(null);
+  }
+
   let restaurant;
   try {
     restaurant = await Restaurant.findById(req.query.id).populate({
@@ -33,5 +38,9 @@ module.exports.getRestaurant = async (req, res) => {
       .json({ msg: "Something went wrong, please try again." });
   }
 
-  return res.status(200).json({ restaurant });
+  if (restaurant) {
+    return res.status(200).json({ restaurant });
+  } else {
+    return res.status(200).json(null);
+  }
 };

@@ -12,9 +12,11 @@
     "axios": "^0.21.1",
     "formik": "^2.2.9",
     "next": "11.0.1",
+    "nprogress": "^0.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-star-ratings": "^2.3.0"
+    "react-star-ratings": "^2.3.0",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "eslint": "7.30.0",

@@ -4,14 +4,16 @@ const bcrypt = require("bcrypt");
 const User = require("../models/user");
 
 module.exports.redirectHome = (req, res) => {
-  res.redirect(process.env.FRONTEND_APP_URL);
+  req.session.save(() => {
+    res.redirect(process.env.FRONTEND_APP_URL);
+  })
 };
 
 module.exports.getCredential = (req, res) => {
-  if (req.user) {
+  if (req.isAuthenticated()) {
     res.send(req.user);
   } else {
-    res.end();
+    res.send(null);
   }
 };
 

@@ -1,21 +1,28 @@
-import RestaurantDetails from '../../components/RestaurantDetails/RestaurantDetails';
+import RestaurantDetails from "../../components/RestaurantDetails/RestaurantDetails";
 
 const Restaurant = ({ restaurant }) => {
   return <RestaurantDetails restaurant={restaurant} />;
 };
 
 export async function getServerSideProps(ctx) {
-  if (Object.keys(ctx.req.cookies).length === 0) {
+  const { isAuthenticated } = require("../../utils/isAuth");
+  if (isAuthenticated(ctx)) return isAuthenticated(ctx);
+
+  const req = await fetch(
+    `${process.env.REACT_APP_API_URL}/restaurant?id=${ctx.params.id}`,
+    { method: "GET" }
+  );
+  const res = await req.json();
+
+  if (!res) {
     return {
       redirect: {
-        destination: "/sign-up",
+        destination: "/",
         permanent: false,
       },
     };
   }
 
-  const req = await fetch(`${process.env.REACT_APP_API_URL}/restaurant?id=${ctx.params.id}`, { method: "GET" });
-  const res = await req.json();
   return {
     props: {
       restaurant: res.restaurant,

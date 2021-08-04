@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 import { CartContext } from "../../context/cart-context";
 import { AuthContext } from "../../context/auth-context";
-import { getRating } from "../../utils/general";
+import { getRating } from "../../utils/starComponent";
 import useHttp from "../../hooks/use-http";
 import styles from "./RestaurantDetails.module.css";
 import Modal from "../UI/Modal/Modal";
@@ -21,7 +21,7 @@ const fields = [
 const getFeedbackUserImage = (pictureUrl) => {
   let profilePictureUrl;
   if (!pictureUrl.startsWith("https")) {
-    profilePictureUrl = `${process.env.REACT_APP_API_URL}/images/${pictureUrl}`;
+    profilePictureUrl = `${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/images/${pictureUrl}`;
   } else {
     profilePictureUrl = pictureUrl
   }               
@@ -124,7 +124,7 @@ const RestautantDetails = ({ restaurant }) => {
       <div className="row">
         <div className="col-sm-12">
           <Image
-            src={`${process.env.REACT_APP_API_URL}/images/${restaurant.image}`}
+            src={`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/images/${restaurant.image}`}
             width={1200}
             height={300}
           />
@@ -164,7 +164,7 @@ const RestautantDetails = ({ restaurant }) => {
             <div key={i} className={`row ${styles.main}`}>
               <div className="col-sm-12 col-md-2">
                 <Image
-                  src={`${process.env.REACT_APP_API_URL}/images/${option.image}`}
+                  src={`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/images/${option.image}`}
                   width={100}
                   height={100}
                 />
